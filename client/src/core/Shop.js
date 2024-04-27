@@ -7,7 +7,6 @@ import Checkbox from './Checkbox';
 import RadioBox from './RadioBox';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Search from './Search';
 import { prices } from './fixedPrices';
 import Copyright from './Copyright';
 
@@ -124,7 +123,6 @@ const Shop = () => {
       description='Search and find books'
       className='container-fluid'
     >
-      <Search />
       <div className='row'>
         <div className='col-md-3'>
           <h4>Filter by categories</h4>

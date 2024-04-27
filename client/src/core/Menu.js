@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import { Link, withRouter, forceUpdate } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { signout, isAuthenticated } from '../auth';
 import { itemTotal } from './cartHelpers';
 
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -48,10 +48,6 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
@@ -99,26 +95,15 @@ const useStyles = makeStyles((theme) => ({
 const MaterialAppBar = ({ history }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
   const handleMenuClose = () => {
     setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
   };
 
   const menuId = 'primary-search-account-menu';
@@ -137,117 +122,6 @@ const MaterialAppBar = ({ history }) => {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <div style={{ backgroundColor: '#404040' }}>
-        <MenuItem>
-          <Link style={isActive(history, '/')} to='/'>
-            <IconButton aria-label='Home' color='inherit'>
-              <HomeIcon />
-            </IconButton>
-            Home
-          </Link>
-        </MenuItem>
-
-        <MenuItem>
-          <Link style={isActive(history, '/shop')} to='/shop'>
-            <IconButton aria-label='Shop' color='inherit'>
-              <StorefrontIcon />
-            </IconButton>
-            Shop
-          </Link>
-        </MenuItem>
-
-        <MenuItem>
-          <Link style={isActive(history, '/cart')} to='/cart'>
-            <IconButton aria-label='Cart' color='inherit'>
-              <Badge badgeContent={itemTotal()} color='secondary'>
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
-            Cart
-          </Link>
-        </MenuItem>
-
-        {isAuthenticated() && isAuthenticated().user.role === 0 && (
-          <MenuItem>
-            <Link
-              style={isActive(history, '/user/dashboard')}
-              to='/user/dashboard'
-            >
-              <IconButton aria-label='Dashboard' color='inherit'>
-                <DashboardIcon />
-              </IconButton>
-              Dashboard
-            </Link>
-          </MenuItem>
-        )}
-
-        {isAuthenticated() && isAuthenticated().user.role === 1 && (
-          <MenuItem>
-            <Link
-              style={isActive(history, '/admin/dashboard')}
-              to='/admin/dashboard'
-            >
-              <IconButton aria-label='Dashboard' color='inherit'>
-                <DashboardIcon />
-              </IconButton>
-              Dashboard
-            </Link>
-          </MenuItem>
-        )}
-
-        {!isAuthenticated() && (
-          <Fragment>
-            <MenuItem>
-              <Link style={isActive(history, '/signin')} to='/signin'>
-                <IconButton aria-label='Signin' color='inherit'>
-                  <AccountCircleIcon />
-                </IconButton>
-                Signin
-              </Link>
-            </MenuItem>
-
-            <MenuItem>
-              <Link style={isActive(history, '/signup')} to='/signup'>
-                <IconButton aria-label='Signup' color='inherit'>
-                  <PersonAddIcon />
-                </IconButton>
-                Signup
-              </Link>
-            </MenuItem>
-          </Fragment>
-        )}
-
-        {isAuthenticated() && (
-          <MenuItem>
-            <span
-              style={{ cursor: 'pointer', color: '#ffffff' }}
-              onClick={() =>
-                signout(() => {
-                  history.push('/');
-                })
-              }
-            >
-              <IconButton aria-label='Signout' color='inherit'>
-                <ExitToAppIcon />
-              </IconButton>
-              Signout
-            </span>
-          </MenuItem>
-        )}
-      </div>
-    </Menu>
-  );
 
   return (
     <div className={classes.grow}>
@@ -258,14 +132,13 @@ const MaterialAppBar = ({ history }) => {
               edge='start'
               className={classes.menuButton}
               color='inherit'
-              aria-label='brand'
             >
               <StoreIcon />
             </IconButton>
           </a>
           <a href='/' style={{ color: '#ffffff', textDecoration: 'none' }}>
             <Typography className={classes.title} variant='h6' noWrap>
-              BRAND
+              Roosevelt Island Marketplace
             </Typography>
           </a>
 
@@ -352,20 +225,8 @@ const MaterialAppBar = ({ history }) => {
               </span>
             )}
           </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label='show more'
-              aria-controls={mobileMenuId}
-              aria-haspopup='true'
-              onClick={handleMobileMenuOpen}
-              color='inherit'
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
       {renderMenu}
     </div>
   );

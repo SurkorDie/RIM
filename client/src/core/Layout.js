@@ -3,18 +3,14 @@ import Menu from './Menu';
 import '../styles.css';
 
 const Layout = ({
-  title = 'Title',
-  description = 'Description',
-  className,
-  children,
+  children
 }) => (
   <div>
     <Menu />
     <div className='jumbotron mt-5'>
-      <h2>{title}</h2>
-      <p className='lead'>{description}</p>
+      <h1>Roosevelt island marketplace</h1>
     </div>
-    <div className={className}>{children}</div>
+    <div className='container-fluid'>{children}</div>
   </div>
 );
 

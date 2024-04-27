@@ -2,6 +2,10 @@
  * border radius
  */
 
+* {
+  border: 1px solid red; /* Change the color and size as needed */
+}
+
 .btn,
 .jumbotron,
 .nav :hover {
