@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-import Copyright from '../core/Copyright';
 import { signin, authenticate, isAuthenticated } from '../auth';
 
 const useStyles = makeStyles((theme) => ({
@@ -179,7 +178,6 @@ export default function Signin() {
       className='container col-md-8 offset-md-2'
     >
       {signInForm()}
-      <Copyright />
     </Layout>
   );
 }

@@ -5,7 +5,6 @@ import { getCart } from './cartHelpers';
 import Card from './Card';
 import Checkout from './Checkout';
 
-import Copyright from './Copyright';
 
 const Cart = () => {
   const [items, setItems] = useState([]);
@@ -59,7 +58,6 @@ const Cart = () => {
         </div>
         <div className='col-md-2'></div>
       </div>
-      <Copyright />
     </Layout>
   );
 };

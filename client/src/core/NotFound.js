@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import Layout from './Layout';
-import Copyright from './Copyright';
 import WarningIcon from '@material-ui/icons/Warning';
 import Typography from '@material-ui/core/Typography';
 
@@ -15,7 +14,6 @@ const NotFound = () => {
         <WarningIcon style={{ fontSize: 50, color: '#FF7D00' }} /> Sorry, this page does not
         exist!
       </Typography>
-      <Copyright />
     </Layout>
   );
 };
