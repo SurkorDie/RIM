@@ -8,7 +8,6 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -22,12 +21,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  avatar: {
+  signinIcon: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -52,7 +50,7 @@ export default function Signin() {
   };
 
   const clickSubmit = (event) => {
-    event.preventDefault(); // so that browser does not reload
+    event.preventDefault();
     setValues({ ...values, error: false, loading: true });
     signin({ email, password }).then((data) => {
       if (data.error) {
@@ -86,6 +84,9 @@ export default function Signin() {
 
   const redirectUser = () => {
     if (redirectToReferrer) {
+      console.log("user role")
+      console.log(user.role)
+      
       if (user && user.role === 1) {
         return <Redirect to='/admin/dashboard' />;
       } else {
@@ -106,8 +107,8 @@ export default function Signin() {
       {redirectUser()}
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+        <Avatar className={classes.signinIcon}>
+          <img src="https://static.vecteezy.com/system/resources/thumbnails/020/788/814/small/icon-symbol-or-website-admin-social-login-element-concept-3d-rendering-png.png" alt="Signup Icon" style={{ width: 50, height: 50 }} />
         </Avatar>
         <Typography component='h1' variant='h5'>
           Sign in
@@ -154,15 +155,10 @@ export default function Signin() {
           >
             Sign In
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href='#' variant='body2'>
-                Forgot password?
-              </Link>
-            </Grid>
+          <Grid container justifyContent='flex-end'>
             <Grid item>
-              <Link to='/signup' variant='body2'>
-                {"Don't have an account? Sign Up"}
+            <Link to='/signup' variant='body2'>
+                Don't have an account? Sign Up"
               </Link>
             </Grid>
           </Grid>
@@ -174,7 +170,7 @@ export default function Signin() {
   return (
     <Layout
       title='Signin page'
-      description='Signin to MERN E-commerce App'
+      description='Signin to Roosevelt Island Marketplace App'
       className='container col-md-8 offset-md-2'
     >
       {signInForm()}

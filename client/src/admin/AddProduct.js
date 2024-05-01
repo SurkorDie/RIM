@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { createProduct, getCategories } from './apiAdmin';
+import slugify from 'slugify';
+
 
 const AddProduct = () => {
   const [values, setValues] = useState({
@@ -57,11 +59,21 @@ const AddProduct = () => {
     init();
   }, []);
 
+
   const handleChange = (name) => (event) => {
-    const value = name === 'photo' ? event.target.files[0] : event.target.value;
+    let value = name === 'photo' ? event.target.files[0] : event.target.value;
+  
     formData.set(name, value);
+  
+    if (name === 'name') {
+      const slug = slugify(value, { lower: true });
+      formData.set('slug', slug);
+    }
+  
     setValues({ ...values, [name]: value });
   };
+  
+  
 
   const clickSubmit = (event) => {
     event.preventDefault();

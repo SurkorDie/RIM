@@ -43,6 +43,11 @@ const Dashboard = () => {
               Update profile
             </Link>
           </li>
+          <li className='list-group-item'>
+            <Link className='nav-link' to='/create/product'>
+              Have an item you don't want? Post now
+            </Link>
+          </li>
         </ul>
       </div>
     );

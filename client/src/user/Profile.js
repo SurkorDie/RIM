@@ -40,7 +40,6 @@ const Profile = ({ match }) => {
     update(match.params.userId, token, { name, email, password }).then(
       (data) => {
         if (data.error) {
-          // console.log(data.error);
           alert(data.error);
         } else {
           updateUser(data, () => {

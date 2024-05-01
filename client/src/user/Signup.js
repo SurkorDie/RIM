@@ -4,9 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-// import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -21,12 +19,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  avatar: {
+  signupIcon: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -50,7 +47,7 @@ export default function Signup() {
   };
 
   const clickSubmit = (event) => {
-    event.preventDefault(); // so that browser does not reload
+    event.preventDefault();
     setValues({ ...values, error: false });
     signup({ name, email, password }).then((data) => {
       if (data.error) {
@@ -65,7 +62,7 @@ export default function Signup() {
           success: true,
         });
       }
-    }); // sending js object
+    });
   };
 
   const showError = () => (
@@ -82,7 +79,7 @@ export default function Signup() {
       className='alert alert-info'
       style={{ display: success ? '' : 'none' }}
     >
-      New account is created. Please <Link to='/signin'>Signin</Link>.
+      Signedup successfully. Please <Link to='/signin'>Signin</Link>.
     </div>
   );
 
@@ -94,8 +91,8 @@ export default function Signup() {
       {showError()}
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+        <Avatar className={classes.signupIcon}>
+          <img src="https://cdn-icons-png.flaticon.com/512/6159/6159448.png" alt="Signup Icon" style={{ width: 50, height: 50 }} />
         </Avatar>
         <Typography component='h1' variant='h5'>
           Sign up
@@ -156,7 +153,7 @@ export default function Signup() {
           >
             Sign Up
           </Button>
-          <Grid container justify='flex-end'>
+          <Grid container justifyContent='flex-end'>
             <Grid item>
               <Link to='/signin' variant='body2'>
                 Already have an account? Sign in
@@ -171,7 +168,7 @@ export default function Signup() {
   return (
     <Layout
       title='Signup page'
-      description='Signup to MERN E-commerce App'
+      description='Signup to Roosevelt Island Marketplace App'
       className='container col-md-8 offset-md-2'
     >
       {signUpForm()}

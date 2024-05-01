@@ -7,7 +7,6 @@ import PrivateRoute from './auth/PrivateRoute';
 import Dashboard from './user/UserDashboard';
 import AdminRoute from './auth/AdminRoute';
 import AdminDashboard from './user/AdminDashboard';
-import AddCategory from './admin/AddCategory';
 import AddProduct from './admin/AddProduct';
 import Product from './core/Product';
 import Cart from './core/Cart';
@@ -15,7 +14,6 @@ import Orders from './admin/Orders';
 import Profile from './user/Profile';
 import ManageProducts from './admin/ManageProducts';
 import UpdateProduct from './admin/UpdateProduct';
-import CategoryList from './admin/CategoryList';
 import NotFound from './core/NotFound';
 
 const Routes = () => {
@@ -29,13 +27,13 @@ const Routes = () => {
         <Route path='/cart' component={Cart} exact />
         <PrivateRoute path='/user/dashboard' component={Dashboard} exact />
         <PrivateRoute path='/profile/:userId' component={Profile} exact />
+        <PrivateRoute path='/create/product' component={AddProduct} exact />
+
         <AdminRoute path='/admin/dashboard' component={AdminDashboard} exact />
-        <AdminRoute path='/create/category' component={AddCategory} exact />
-        <AdminRoute path='/create/product' component={AddProduct} exact />
         <AdminRoute path='/admin/orders' component={Orders} exact />
         <AdminRoute path='/admin/products' component={ManageProducts} exact />
         <AdminRoute path='/admin/product/update/:productId' component={UpdateProduct} exact />
-        <AdminRoute path='/admin/categories' component={CategoryList} exact />
+
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>

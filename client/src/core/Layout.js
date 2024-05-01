@@ -1,15 +1,13 @@
 import React from 'react';
-import Menu from './Menu';
+import NavBar from './NavBar';
 import '../styles.css';
 
 const Layout = ({
   children
 }) => (
   <div>
-    <Menu />
-    <div className='jumbotron mt-5'>
-      <h1>Roosevelt island marketplace</h1>
-    </div>
+    <NavBar />
+    <div style={{height: 100}}></div>
     <div className='container-fluid'>{children}</div>
   </div>
 );
