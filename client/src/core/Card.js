@@ -3,17 +3,12 @@ import { Redirect } from 'react-router-dom';
 import ShowImage from './ShowImage';
 import moment from 'moment';
 
-import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
 import CardM from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -42,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   cardMedia: {
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%',
   },
   cardContent: {
     flexGrow: 1,
@@ -62,8 +57,8 @@ const Card = ({
   showAddToCartButton = true,
   cartUpdate = false,
   showRemoveProductButton = false,
-  setRun = (f) => f, // default value of function
-  run = undefined, // default value of undefined
+  setRun = (f) => f,
+  run = undefined,
 }) => {
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
@@ -73,7 +68,7 @@ const Card = ({
       showViewProductButton && (
         <Link href={`/product/${product._id}`} className='mr-2'>
           <Button variant='contained' color='primary'>
-            View Product
+            View Product details
           </Button>
         </Link>
       )
@@ -81,7 +76,6 @@ const Card = ({
   };
 
   const addToCart = () => {
-    // console.log('added');
     addItem(product, setRedirect(true));
   };
 
@@ -110,7 +104,7 @@ const Card = ({
   };
 
   const handleChange = (productId) => (event) => {
-    setRun(!run); // run useEffect in parent Cart
+    setRun(!run);
     setCount(event.target.value < 1 ? 1 : event.target.value);
     if (event.target.value >= 1) {
       updateItem(productId, event.target.value);
@@ -174,10 +168,10 @@ const Card = ({
               <Typography className={classes.productDescription}>{product.description.substring(0, 100)}</Typography>
               <p className='black-10'>Price: ${product.price}</p>
               <p className='black-9'>
-                Category: {product.category && product.category.name}{' '}
+                Condition: {product.category && product.category.name}{' '}
               </p>{' '}
               <p className='black-8'>
-                Added on {moment(product.createdAt).fromNow()}{' '}
+                Posted on:  {moment(product.createdAt).format('YYYY-M-D')}{' '}
               </p>
               {showStock(product.quantity)}
               <br></br>

@@ -103,11 +103,7 @@ exports.update = (req, res) => {
     let product = req.product;
     product = _.extend(product, fields);
 
-    // 1kb = 1000
-    // 1mb = 1000000
-
     if (files.photo) {
-      // console.log("FILES PHOTO: ", files.photo);
       if (files.photo.size > 1000000) {
         return res.status(400).json({
           error: 'Image should be less than 1mb in size',
@@ -187,13 +183,6 @@ exports.listCategories = (req, res) => {
   });
 };
 
-/**
- * list products by search
- * we will implement product search in react frontend
- * we will show categories in checkbox and price range in radio buttons
- * as the user clicks on those checkbox and radio buttons
- * we will make api request and show the products to users based on what he wants
- */
 
 exports.listBySearch = (req, res) => {
   let order = req.body.order ? req.body.order : 'desc';
@@ -202,14 +191,10 @@ exports.listBySearch = (req, res) => {
   let skip = parseInt(req.body.skip);
   let findArgs = {};
 
-  // console.log(order, sortBy, limit, skip, req.body.filters);
-  // console.log("findArgs", findArgs);
 
   for (let key in req.body.filters) {
     if (req.body.filters[key].length > 0) {
       if (key === 'price') {
-        // gte -  greater than price [0-10]
-        // lte - less than
         findArgs[key] = {
           $gte: req.body.filters[key][0],
           $lte: req.body.filters[key][1],
