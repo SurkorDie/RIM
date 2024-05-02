@@ -12,10 +12,10 @@ const Carousel = ({ images }) => {
   }, [images.length]);
 
   return (
-    <div className='carousel'>
-      <img src={images[currentIndex]} alt="Display" style={{ width: '100%', height: 'auto' }} />
+    <div className='carousel' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <img src={images[currentIndex]} alt="Display" style={{ width: '35rem', height: '25rem', maxWidth: '100%' }} />
     </div>
   );
 };
 
-export default Carousel
+export default Carousel;
