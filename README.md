@@ -9,12 +9,10 @@
 ## Installation process
 1. #### clone the repo using this command
     ```bash
-    git clone https://github.com/ashraf-kabir/mern-ecommerce.git
     ```
 2. #### install npm packages
     1. install backend packages
     ```bash
-    cd mern-ecommerce
     npm install
     ```
     2. install frontend packages
@@ -34,9 +32,6 @@
     ```env
     MONGODB_URI=YOUR_MONGODB_URI
     JWT_SECRET=YOUR_JWT_SECRET
-    BRAINTREE_MERCHANT_ID=YOUR_BRAINTREE_MERCHANT_ID
-    BRAINTREE_PUBLIC_KEY=YOUR_BRAINTREE_PUBLIC_KEY
-    BRAINTREE_PRIVATE_KEY=YOUR_BRAINTREE_PRIVATE_KEY
     ```
 4.  create another .env file inside client directory for REACT_APP_API_URL.
 
@@ -65,9 +60,8 @@
 
 6. #### Database Structure: (Table: columns)
     1. categories: _id, name, createdAt, updatedAt;
-    2. orders:  _id, status, products (Array), transaction_id, amount, address, user (Object), createdAt, updatedAt
     3. products: _id, photo (Object), sold, name, description, price, category, shipping, quantity, createdAt, updatedAt
-    4. users: _id, role, history (Array), name, email, salt, hashed_password, createdAt, updatedAt
+    4. users: _id, role, name, email, salt, hashed_password, createdAt, updatedAt
 
 ### App Description:
     1. user can view all products
@@ -77,7 +71,6 @@
     5. user can register & sign in
     6. admin can create, edit, update & delete products
     7. admin can create categories
-    8. admin can view ordered products
     9. admin can change the status of a product (processing, shipped, delivered, etc.)
 
 6. <b>Deployed on: (No longer available due to heroku free dyno plan has deprecated)</br> https://ecommerce-ak.herokuapp.com/ 

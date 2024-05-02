@@ -73,7 +73,6 @@ const AddProduct = () => {
     setValues({ ...values, [name]: value });
   };
   
-  
 
   const clickSubmit = (event) => {
     event.preventDefault();
@@ -141,7 +140,7 @@ const AddProduct = () => {
       </div>
 
       <div className='form-group'>
-        <label className='text-muted'>Category</label>
+        <label className='text-muted'>Condition category</label>
         <select onChange={handleChange('category')} className='form-control'>
           <option>Please select</option>
           {categories &&
